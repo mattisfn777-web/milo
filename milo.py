@@ -13,7 +13,13 @@ import urllib.request
 # ─────────────────────────────────────────────
 #  VERSION
 # ─────────────────────────────────────────────
-CURRENT_VERSION    = "1.0.0"
+_VERSION_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "version.txt")
+try:
+    with open(_VERSION_FILE, "r", encoding="utf-8") as _f:
+        CURRENT_VERSION = _f.read().strip()
+except FileNotFoundError:
+    CURRENT_VERSION = "0.0.0"
+
 GITHUB_REPO        = "mattisfn777-web/milo"
 GITHUB_RAW_BASE    = f"https://raw.githubusercontent.com/{GITHUB_REPO}/main"
 GITHUB_VERSION_URL = f"{GITHUB_RAW_BASE}/version.txt"
