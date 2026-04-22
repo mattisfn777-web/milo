@@ -306,7 +306,7 @@ class UpdateOverlay:
 
     def _do_update(self):
         try:
-            script_path = os.path.abspath(sys.argv[0])
+            script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "milo.py")
             backup_path = script_path + ".bak"
             tmp_path    = script_path + ".tmp"
 
@@ -357,7 +357,7 @@ class UpdateOverlay:
 
     def _relaunch(self):
         python = sys.executable
-        script = os.path.abspath(sys.argv[0])
+        script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "milo.py")
         self.parent.destroy()
         subprocess.Popen([python, script])
 
