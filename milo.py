@@ -347,6 +347,13 @@ class UpdateOverlay:
             shutil.move(tmp_path, script_path)
             time.sleep(0.2)
 
+            # Update local version.txt so update loop doesn't repeat on restart
+            self._set_progress("Updating version file…", 95)
+            version_path = os.path.join(os.path.dirname(script_path), "version.txt")
+            with open(version_path, "w", encoding="utf-8") as f:
+                f.write(self.latest_ver + "\n")
+            time.sleep(0.2)
+
             self._set_progress("Done! Restarting Milo…", 100)
             time.sleep(1.0)
 
